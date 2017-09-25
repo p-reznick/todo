@@ -5,11 +5,13 @@
     <li>
       <h3><%= todo.title %></h3>
       <p><%= todo.due_date %></p>
-      <%= link_to "Delete", todo_path(todo), method: :delete %>
+      <%= link_to "[Edit]", edit_todo_path(todo) %>
+      <%= link_to "[Show]", todo_path(todo) %>
+      <%= link_to "[Delete]", todo_path(todo), method: :delete %>
       <hr/>
     </li>
   <% end %>
 </ul>
 
 <br/>
-<%= link_to "Create todo", 'todos/new' %>
+<%= link_to "Create todo", new_todo_path %>
