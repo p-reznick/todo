@@ -1,0 +1,9 @@
+<%= form_for @todo do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :due_date %>
+  <%= datetime_local_field(:todo, :due_date) %>
+  <%= f.submit "Update todo" %>
+<% end %>
