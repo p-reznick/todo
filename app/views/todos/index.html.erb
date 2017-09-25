@@ -1,0 +1,12 @@
+<h1>All Todos</h1>
+
+<ul>
+  <% @todos.each do |todo| %>
+    <li>
+      <h3><%= todo.title %></h3>
+      <p><%= todo.description %></p>
+      <p><%= todo.due_date %></p>
+      <hr/>
+    </li>
+  <% end %>
+</ul>
