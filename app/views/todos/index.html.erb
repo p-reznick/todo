@@ -3,9 +3,15 @@
 <ul>
   <% @todos.each do |todo| %>
     <li>
-      <h3><%= todo.title %></h3>
+      <% if todo.completed == 't' %>
+        <h3 class="strikethrough"><%= todo.title %></h3>
+      <% else %>
+        <h3><%= todo.title %></h3>
+      <% end %>
       <p><%= todo.due_date %></p>
-      <%= link_to "[Edit]", edit_todo_path(todo) %>
+      <% if todo.completed == 'f' %>
+        <%= link_to "[Edit]", edit_todo_path(todo) %>
+      <% end %>
       <%= link_to "[Show]", todo_path(todo) %>
       <%= link_to "[Delete]", todo_path(todo), method: :delete %>
       <hr/>
