@@ -3,7 +3,6 @@
   <%= f.text_field :title %>
   <%= f.label :description %>
   <%= f.text_area :description %>
-  <%= f.label :due_date %>
-  <%= datetime_local_field(:todo, :due_date) %>
+  <%= f.date_select :due_date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 5}, {required: true} %>
   <%= f.submit %>
 <% end %>

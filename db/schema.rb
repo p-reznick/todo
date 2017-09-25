@@ -10,14 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925164341) do
+ActiveRecord::Schema.define(version: 20170925211640) do
 
-  create_table "todos", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.datetime "due_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "todos" because of following StandardError
+#   Unknown type '' for column 'completed'
 
 end
