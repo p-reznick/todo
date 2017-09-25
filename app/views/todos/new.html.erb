@@ -1,0 +1,9 @@
+<%= form_for @todo do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  <%= f.label :due_date %>
+  <%= f.text_area :due_date %>
+  <%= f.submit %>
+<% end %>
