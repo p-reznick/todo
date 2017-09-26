@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: "todos#index"
   resources :todos
   patch '/todos/:id/complete', to: 'todos#complete', as: 'complete_todo'
+
+  resources :users, only: [:new, :create, :edit, :update]
 end
