@@ -1,8 +1,9 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update]
+  before_action :require_user, only: [:new, :create, :complete, :update, :destroy]
 
   def index
-    @todos = Todo.order(:completed, :due_date)
+    @todos = Todo.where(user_id: session[:user_id]).order(:completed, :due_date)
   end
 
   def new
@@ -11,6 +12,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.user_id = session[:user_id]
 
     if @todo.save
       redirect_to todos_path
