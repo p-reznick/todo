@@ -28,10 +28,4 @@ ActiveRecord::Schema.define(version: 20170926215621) do
     t.string "username", null: false
   end
 
-  create_table "users_tables", force: :cascade do |t|
-    t.string "email"
-    t.string "password", null: false
-    t.string "username", null: false
-  end
-
 end
