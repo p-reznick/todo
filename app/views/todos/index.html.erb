@@ -3,13 +3,13 @@
 <ul>
   <% @todos.each do |todo| %>
     <li>
-      <% if todo.completed == 't' %>
+      <% if todo.completed %>
         <h3 class="strikethrough"><%= todo.title %></h3>
       <% else %>
         <h3><%= todo.title %></h3>
       <% end %>
       <p><%= todo.due_date %></p>
-      <% if todo.completed == 'f' %>
+      <% if !todo.completed %>
         <%= link_to "[Edit]", edit_todo_path(todo) %>
       <% end %>
       <%= link_to "[Show]", todo_path(todo) %>
