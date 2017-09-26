@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   resources :todos
   patch '/todos/:id/complete', to: 'todos#complete', as: 'complete_todo'
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:create, :edit, :update]
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+  get '/register', to: "users#new"
 end
