@@ -3,6 +3,12 @@
   <%= f.text_field :title %>
   <%= f.label :description %>
   <%= f.text_area :description %>
+  <p>
   <%= f.date_select :due_date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 5}, {required: true} %>
+  </p>
+
+  <p>
+  <%= collection_select("todo", "category_id", @user.categories, :id, :title) %>
+  </p>
   <%= f.submit submit_label %>
 <% end %>

@@ -8,11 +8,13 @@ class TodosController < ApplicationController
 
   def new
     @todo = Todo.new
+    @user = User.find(session[:user_id])
   end
 
   def create
     @todo = Todo.new(todo_params)
     @todo.user_id = session[:user_id]
+    @todo.category_id = params[:todo][:category_id]
 
     if @todo.save
       redirect_to todos_path
@@ -28,7 +30,11 @@ class TodosController < ApplicationController
     redirect_to todos_path
   end
 
-  def edit;end
+  def edit
+    @todo = Todo.find(params[:id])
+    @todo.user_id = session[:user_id]
+    @user = User.find(session[:user_id])
+  end
 
   def update
     if @todo.update(todo_params)
@@ -48,7 +54,7 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.require(:todo).permit(:title, :description, :due_date)
+    params.require(:todo).permit(:title, :description, :due_date, :category_id)
   end
 
   def set_todo
