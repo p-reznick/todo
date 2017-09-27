@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   patch '/todos/:id/complete', to: 'todos#complete', as: 'complete_todo'
 
   resources :users, only: [:show, :create, :edit, :update] do
-    resources :categories, only: [:new, :create]
+    resources :categories, only: [:new, :create, :show]
   end
 
   get '/login', to: 'sessions#new'

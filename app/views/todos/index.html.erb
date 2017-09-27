@@ -3,26 +3,31 @@
   <p>Welcome, <%= current_user.username %>!</p>
   <%= link_to "Logout", logout_path %>
   <%= link_to "View user details", user_path(session[:user_id]) %>
+  <%= link_to "Create category", new_user_category_path(session[:user_id]) %>
+
+  <ul>
+    <% @todos.each do |todo| %>
+      <li>
+        <% if todo.completed %>
+          <h3 class="strikethrough"><%= todo.title %></h3>
+        <% else %>
+          <h3><%= todo.title %></h3>
+        <% end %>
+        <%= link_to Category.find(todo.category_id).title, user_category_path(session[:user_id], todo.category_id) %>
+        <p><%= todo.due_date %></p>
+        <% if !todo.completed %>
+          <%= link_to "[Edit]", edit_todo_path(todo) %>
+        <% end %>
+        <%= link_to "[Show]", todo_path(todo) %>
+        <%= link_to "[Delete]", todo_path(todo), method: :delete %>
+        <hr/>
+      </li>
+    <% end %>
+  </ul>
+
+  <br/>
+  <%= link_to "Create todo", new_todo_path %>
+<% else %>
+  <%= link_to "Log in", login_path %>
+  <%= link_to "Register new user", register_path %>
 <% end %>
-
-<ul>
-  <% @todos.each do |todo| %>
-    <li>
-      <% if todo.completed %>
-        <h3 class="strikethrough"><%= todo.title %></h3>
-      <% else %>
-        <h3><%= todo.title %></h3>
-      <% end %>
-      <p><%= todo.due_date %></p>
-      <% if !todo.completed %>
-        <%= link_to "[Edit]", edit_todo_path(todo) %>
-      <% end %>
-      <%= link_to "[Show]", todo_path(todo) %>
-      <%= link_to "[Delete]", todo_path(todo), method: :delete %>
-      <hr/>
-    </li>
-  <% end %>
-</ul>
-
-<br/>
-<%= link_to "Create todo", new_todo_path %>

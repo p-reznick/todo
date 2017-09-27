@@ -8,12 +8,16 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @user = User.find(session[:user_id])
     @category.user = @user
-    
+
     if @category.save
       redirect_to todos_path
     else
       render :new
     end
+  end
+
+  def show
+    @todos = Category.find(params[:id]).todos
   end
 
   private

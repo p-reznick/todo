@@ -7,8 +7,10 @@
   <%= f.date_select :due_date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year, end_year: Date.today.year + 5}, {required: true} %>
   </p>
 
+  <% if Category.all.where(user_id: session[:user_id]).length > 0 %>
   <p>
-  <%= collection_select("todo", "category_id", @user.categories, :id, :title) %>
+    <%= collection_select("todo", "category_id", @user.categories, :id, :title) %>
   </p>
+  <% end %>
   <%= f.submit submit_label %>
 <% end %>
